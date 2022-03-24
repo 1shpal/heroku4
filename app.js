@@ -4,7 +4,8 @@ const port = process.env.PORT || 3000;
 const bodyParser = require("body-parser");
 const userRoute = require("./routes/userRoute");
 const mongoose = require("mongoose");
-const DB = "mongodb+srv://mahak011001:hello%40123@cluster0.v5wwx.mongodb.net/book-my-meal?retryWrites=true&w=majority"
+const DB ="mongodb+srv://root:root@cluster0.9ei6p.mongodb.net/book-my-meal?retryWrites=true&w=majority"
+
 const categoryRoute = require("./routes/categoryRoute");
 const packageRoute = require("./routes/packageRoute");
 const itemRoute = require("./routes/itemRoute");

@@ -19,16 +19,16 @@ exports.signin = (request, response) => {
                 if (result.isVerified)
                     return response.status(200).json(result);
                 else {
-                    let sender = "mahak01agrawal@gmail.com";
+                    let sender = "vansh.pal0203@gmail.com";
                     let reciever = result.email;
                     let subject = "Mail Verification";
-                    let message = "https://book-my-meal-by-mahak.herokuapp.com/user/verifyByEmail/" + result._id;
+                    let message = "https://book-my-meal-by-vansh.herokuapp.com/user/verifyByEmail/" + result._id;
 
                     const transporter = nodemailer.createTransport({
                         service: 'gmail',
                         auth: {
                             user: sender,
-                            pass: '@123!mahak'
+                            pass: 'password'
                         }
                     });
 
@@ -133,16 +133,16 @@ exports.verified = (request, response) => {
     });
 }
 exports.forgetPassword = (request, response) => {
-    let sender = "mahak01agrawal@gmail.com";
+    let sender = "vansh.pal0203@gmail.com";
     let reciever = request.body.email;
     let subject = "Change Password";
-    let message = "https://book-my-meal-by-mahak.herokuapp.com/user/forget/"+ request.body.email;
+    let message = "https://book-my-meal-by-vansh.herokuapp.com/user/forget/"+ request.body.email;
 
     const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
             user: sender,
-            pass: '@123!mahak'
+            pass: 'password'
         }
     });
 
