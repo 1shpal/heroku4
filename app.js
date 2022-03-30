@@ -13,7 +13,7 @@ const cartRoute = require("./routes/cartRoutes");
 const orderRoute = require("./routes/orderRoute");
 const adminRoute = require("./routes/adminRoute");
 app.set("view engine","ejs");
-mongoose.connect(DB,{
+mongoose.connect(DB,{  
     useUnifiedTopology: true,
     useNewUrlParser:true
 }).then((result)=>{

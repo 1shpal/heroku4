@@ -10,7 +10,7 @@ exports.signup = (request, response) => {
             return response.status(500).json(err);
         });
 }
-
+//book-my-meal-by-vansh.herokuapp.com
 exports.signin = (request, response) => {
     userModel.findOne(request.body).populate("favItems").populate("favPackages")
         .then(result => {
@@ -19,16 +19,15 @@ exports.signin = (request, response) => {
                 if (result.isVerified)
                     return response.status(200).json(result);
                 else {
-                    let sender = "vansh.pal0203@gmail.com";
+                    let sender = "vanshpal0203projects@gmail.com";
                     let reciever = result.email;
                     let subject = "Mail Verification";
                     let message = "https://book-my-meal-by-vansh.herokuapp.com/user/verifyByEmail/" + result._id;
-
                     const transporter = nodemailer.createTransport({
                         service: 'gmail',
                         auth: {
                             user: sender,
-                            pass: 'password'
+                            pass: 'vansh0203'
                         }
                     });
 
@@ -133,7 +132,7 @@ exports.verified = (request, response) => {
     });
 }
 exports.forgetPassword = (request, response) => {
-    let sender = "vansh.pal0203@gmail.com";
+    let sender = "vanshpal0203projects@gmail.com";
     let reciever = request.body.email;
     let subject = "Change Password";
     let message = "https://book-my-meal-by-vansh.herokuapp.com/user/forget/"+ request.body.email;
@@ -142,7 +141,7 @@ exports.forgetPassword = (request, response) => {
         service: 'gmail',
         auth: {
             user: sender,
-            pass: 'password'
+            pass: 'vansh0203'
         }
     });
 
