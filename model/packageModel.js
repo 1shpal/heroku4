@@ -11,5 +11,4 @@ const packageSchema = new mongoose.Schema({
     day : String,
     catId : Schema.Types.ObjectId
 });
-
 module.exports = mongoose.model("packages",packageSchema);

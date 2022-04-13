@@ -1,10 +1,12 @@
 const categoryModel = require("../model/categoryModel");
+
 const port = process.env.PORT || 3000;
 
 exports.add = (request,response)=>{
+    console.log(request.file.filename);
     categoryModel.create({
         name : request.body.name,
-        image : "https://book-my-meal-by-vansh.herokuapp.com/images/"+request.file.filename
+        image : "https://firebasestorage.googleapis.com/v0/b/imageupload-783bb.appspot.com/o/"+request.file.filename+"?alt=media&token=vanshpal"
     }).then(result=>{
         return response.status(200).json(result);
     }).catch(err=>{

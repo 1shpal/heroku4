@@ -2,6 +2,7 @@ const userModel = require("../model/userModel.js");
 const nodemailer = require("nodemailer");
 const packageModel = require("../model/packageModel");
 const itemModel = require("../model/itemModel");
+const jwt = require("jsonwebtoken");
 exports.signup = (request, response) => {
     userModel.create(request.body)
         .then(result => {
@@ -15,9 +16,14 @@ exports.signin = (request, response) => {
     userModel.findOne(request.body).populate("favItems").populate("favPackages")
         .then(result => {
             if(result){
+                let payload = {subject:result._id};
+                let token = jwt.sign(payload,"jkfhsdjfskfdsjfsddv");
             if (result.isBlocked == false) {
                 if (result.isVerified)
-                    return response.status(200).json(result);
+                    return response.status(200).json({
+                        CurrentUser:result,
+                        token:token
+                       });
                 else {
                     let sender = "vanshpal0203projects@gmail.com";
                     let reciever = result.email;
@@ -57,6 +63,13 @@ exports.signin = (request, response) => {
         }).catch(err => {
             return response.status(500).json({ err: err });
         });
+        
+}
+exports.newapi=(request,response)=>{
+    if (request.body.files){
+        
+    }
+
 }
 exports.view = (request, response) => {
     userModel.find(request.body)
@@ -150,7 +163,7 @@ exports.forgetPassword = (request, response) => {
         from: sender,
         to: reciever,
         subject: subject,
-        html: "<h4>Click on the below button to change the password</h4><a href='" + message + "'><button style='background-color: #008CBA;background-color: #4CAF50; /* Green */border: none;color: white;padding: 15px 32px;text-align: center;text-decoration: none;display: inline-block;font-size: 16px;margin: 4px 2px;cursor: pointer;'>Change Password</button></a>"
+        html: "<h4>Click on the below button to change the password</h4><a href='" + message + "'><button  style='background-color: #008CBA;background-color: #4CAF50; /* Green */border: none;color: white;padding: 15px 32px;text-align: center;text-decoration: none;display: inline-block;font-size: 16px;margin: 4px 2px;cursor: pointer;'>Change Password</button></a>"
     };
 
     transporter.sendMail(mailOptions, (error, res) => {
